@@ -5,11 +5,11 @@ import { adaptersData } from '@/lib/adapters-data';
 
 export default function HomePage() {
   return (
-    <main className="bg-black text-white antialiased">
+    <main className="bg-white dark:bg-black text-black dark:text-white antialiased">
       <Navigation />
 
       {/* Hero */}
-      <section className="bg-black border-b border-white/10">
+      <section className="bg-white dark:bg-black border-b border-black/10 dark:border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-32">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-block border border-white/20 px-4 py-2 rounded-full mb-6 animate-fadeInUp">
