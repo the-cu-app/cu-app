@@ -68,6 +68,7 @@ export default function DashboardPage() {
   }
 
   const adapters = [
+    { id: 'demo-starter', name: 'Demo Starter', price: '$1' },
     { id: 'banking-core', name: 'Digital Banking Core', price: '$15K' },
     { id: 'iso20022', name: 'ISO20022 Payments', price: '$12K' },
     { id: 'compliance', name: 'Compliance & Risk', price: '$10K' },
@@ -138,7 +139,7 @@ export default function DashboardPage() {
             </div>
             <div className="border border-white/10 rounded-lg p-6">
               <div className="text-sm text-white/60 mb-1">Adapters Owned</div>
-              <div className="text-3xl font-bold">{user.adapters_purchased.length}/10</div>
+              <div className="text-3xl font-bold">{user.adapters_purchased.length}/11</div>
             </div>
             <div className="border border-white/10 rounded-lg p-6">
               <div className="text-sm text-white/60 mb-1">ID Status</div>

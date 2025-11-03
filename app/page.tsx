@@ -21,7 +21,7 @@ export default function HomePage() {
             </h1>
 
             <p className="text-2xl text-white/60 mb-12 animate-fadeInUp delay-200">
-              10 battle-tested adapters. One platform. Zero technical debt.
+              11 battle-tested adapters. One platform. Zero technical debt.
             </p>
 
             <div className="flex gap-4 justify-center animate-fadeInUp delay-300">
@@ -61,7 +61,11 @@ export default function HomePage() {
                     </svg>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold">${(adapter.price_onetime / 1000).toFixed(0)}K</div>
+                    <div className="text-2xl font-bold">
+                      {adapter.price_onetime < 1000
+                        ? `$${adapter.price_onetime}`
+                        : `$${(adapter.price_onetime / 1000).toFixed(0)}K`}
+                    </div>
                     <div className="text-xs text-white/60">one-time</div>
                   </div>
                 </div>
@@ -85,7 +89,7 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-5xl font-bold mb-6">Get the complete suite</h2>
             <p className="text-xl text-white/60 mb-8">
-              All 10 adapters for $50,000. Perpetual license. No monthly fees.
+              All 11 adapters for $50,000. Perpetual license. No monthly fees.
             </p>
 
             <div className="bg-black border-2 border-white rounded-2xl p-12 mb-8">
@@ -97,7 +101,7 @@ export default function HomePage() {
                   <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                   </svg>
-                  <span>All 10 adapters included</span>
+                  <span>All 11 adapters included</span>
                 </li>
                 <li className="flex gap-3">
                   <svg className="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

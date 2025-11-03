@@ -30,6 +30,48 @@ export interface Adapter {
 
 export const adaptersData: Adapter[] = [
   {
+    id: "demo-starter",
+    name: "Demo Starter Adapter",
+    tagline: "Test drive the platform",
+    description: "Complete demo adapter with sample data, API access, and documentation. Test all features risk-free.",
+    price_onetime: 1,
+    price_monthly: 0,
+    deploy_days: 1,
+    icon: "zap",
+    features: [
+      {
+        title: "Sample Data & Workflows",
+        description: "Pre-loaded sample data with realistic user scenarios and transaction history.",
+        items: ["Sample accounts", "Test transactions", "Demo users", "Sample API responses"]
+      },
+      {
+        title: "Full API Access",
+        description: "Access to all API endpoints with rate limiting removed for testing.",
+        items: ["Unrestricted API access", "Sandbox environment", "Test credentials", "Postman collection"]
+      },
+      {
+        title: "Interactive Documentation",
+        description: "Step-by-step guides and interactive tutorials for all features.",
+        items: ["Getting started guide", "Video tutorials", "Code examples", "Best practices"]
+      },
+      {
+        title: "Developer Tools",
+        description: "Testing tools and utilities for rapid development and debugging.",
+        items: ["API debugger", "Webhook tester", "Data generator", "Mock services"]
+      }
+    ],
+    specs: {
+      tables: 5,
+      views: 2,
+      functions: 8,
+      procedures: 3,
+      endpoints: 24,
+      response_time: "<50ms p95",
+      throughput: "5K req/sec",
+      uptime: "99.9%"
+    }
+  },
+  {
     id: "banking-core",
     name: "Digital Banking Core Adapter",
     tagline: "Complete digital banking platform",
