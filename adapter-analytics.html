@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics & Insights Adapter - CU.APP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; background: #000; color: #fff; }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .animate-fadeInUp {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .animate-fadeIn {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    .delay-100 { animation-delay: 0.1s; opacity: 0; }
+    .delay-200 { animation-delay: 0.2s; opacity: 0; }
+    .delay-300 { animation-delay: 0.3s; opacity: 0; }
+    .delay-400 { animation-delay: 0.4s; opacity: 0; }
+
+    /* Scroll reveal */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-black text-white antialiased">
+
+  <!-- Navigation -->
+  <nav class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex justify-between items-center">
+        <div class="text-2xl font-bold">cu.app</div>
+        <div class="flex gap-6 items-center">
+          <a href="product-page-v2.html" class="text-sm hover:text-white/60 transition-colors">All Adapters</a>
+          <a href="#" class="text-sm hover:text-white/60 transition-colors">Documentation</a>
+          <a href="#" class="text-sm hover:text-white/60 transition-colors">Pricing</a>
+          <a href="#" class="border border-white/20 px-4 py-2 rounded text-sm hover:bg-white hover:text-black transition-all">Sign In</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="bg-black border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-32">
+      <div class="max-w-4xl">
+        <div class="inline-block border border-white/20 px-4 py-2 rounded mb-6 animate-fadeInUp">
+          <span class="text-sm font-medium">ANALYTICS & INSIGHTS ADAPTER</span>
+        </div>
+
+        <h1 class="text-7xl font-bold tracking-tight mb-6 animate-fadeInUp delay-100">
+          Real-time analytics platform
+        </h1>
+
+        <p class="text-2xl text-white/60 mb-12 animate-fadeInUp delay-200">
+          Custom dashboards, predictive insights, and member behavior tracking in one comprehensive adapter.
+        </p>
+
+        <div class="flex gap-4 animate-fadeInUp delay-300">
+          <button class="bg-white text-black px-8 py-4 rounded font-bold hover:bg-white/90 transition-colors">
+            View Pricing
+          </button>
+          <button class="border border-white/20 px-8 py-4 rounded font-bold hover:bg-white hover:text-black transition-all">
+            Schedule Demo
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-5xl font-bold mb-4">Everything you need</h2>
+        <p class="text-xl text-white/60">Production-ready analytics features out of the box</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="scroll-reveal border border-white/10 rounded p-8 hover:border-white/30 transition-colors">
+          <div class="w-12 h-12 border border-white/10 rounded flex items-center justify-center mb-6">
+            <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+              <rect x="10" y="28" width="8" height="12" fill="white"/>
+              <rect x="20" y="20" width="8" height="20" fill="white"/>
+              <rect x="30" y="12" width="8" height="28" fill="white"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Real-time Dashboards</h3>
+          <p class="text-white/60 mb-4">Live analytics dashboards with customizable widgets and real-time data updates.</p>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>✓ Custom layouts</li>
+            <li>✓ Live updates</li>
+            <li>✓ Drag & drop widgets</li>
+            <li>✓ Scheduled refreshes</li>
+          </ul>
+        </div>
+
+        <div class="scroll-reveal border border-white/10 rounded p-8 hover:border-white/30 transition-colors">
+          <div class="w-12 h-12 border border-white/10 rounded flex items-center justify-center mb-6">
+            <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+              <rect x="10" y="28" width="8" height="12" fill="white"/>
+              <rect x="20" y="20" width="8" height="20" fill="white"/>
+              <rect x="30" y="12" width="8" height="28" fill="white"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Custom Reports</h3>
+          <p class="text-white/60 mb-4">Build and schedule custom reports with flexible filtering and export options.</p>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>✓ Report builder</li>
+            <li>✓ Scheduled delivery</li>
+            <li>✓ Email distribution</li>
+            <li>✓ Multi-format export</li>
+          </ul>
+        </div>
+
+        <div class="scroll-reveal border border-white/10 rounded p-8 hover:border-white/30 transition-colors">
+          <div class="w-12 h-12 border border-white/10 rounded flex items-center justify-center mb-6">
+            <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+              <rect x="10" y="28" width="8" height="12" fill="white"/>
+              <rect x="20" y="20" width="8" height="20" fill="white"/>
+              <rect x="30" y="12" width="8" height="28" fill="white"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Predictive Analytics</h3>
+          <p class="text-white/60 mb-4">Machine learning-powered forecasting and trend analysis with accuracy metrics.</p>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>✓ Trend forecasting</li>
+            <li>✓ Anomaly detection</li>
+            <li>✓ ML models</li>
+            <li>✓ Accuracy scoring</li>
+          </ul>
+        </div>
+
+        <div class="scroll-reveal border border-white/10 rounded p-8 hover:border-white/30 transition-colors">
+          <div class="w-12 h-12 border border-white/10 rounded flex items-center justify-center mb-6">
+            <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+              <rect x="10" y="28" width="8" height="12" fill="white"/>
+              <rect x="20" y="20" width="8" height="20" fill="white"/>
+              <rect x="30" y="12" width="8" height="28" fill="white"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Member Segmentation</h3>
+          <p class="text-white/60 mb-4">Advanced segmentation tools for targeted member analysis and personalization.</p>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>✓ Behavioral segments</li>
+            <li>✓ Demographic filters</li>
+            <li>✓ Dynamic rules</li>
+            <li>✓ Overlap analysis</li>
+          </ul>
+        </div>
+
+        <div class="scroll-reveal border border-white/10 rounded p-8 hover:border-white/30 transition-colors">
+          <div class="w-12 h-12 border border-white/10 rounded flex items-center justify-center mb-6">
+            <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+              <rect x="10" y="28" width="8" height="12" fill="white"/>
+              <rect x="20" y="20" width="8" height="20" fill="white"/>
+              <rect x="30" y="12" width="8" height="28" fill="white"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Behavioral Tracking</h3>
+          <p class="text-white/60 mb-4">Track member interactions and behaviors across all channels and touchpoints.</p>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>✓ Event tracking</li>
+            <li>✓ User journeys</li>
+            <li>✓ Interaction history</li>
+            <li>✓ Attribution modeling</li>
+          </ul>
+        </div>
+
+        <div class="scroll-reveal border border-white/10 rounded p-8 hover:border-white/30 transition-colors">
+          <div class="w-12 h-12 border border-white/10 rounded flex items-center justify-center mb-6">
+            <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+              <rect x="10" y="28" width="8" height="12" fill="white"/>
+              <rect x="20" y="20" width="8" height="20" fill="white"/>
+              <rect x="30" y="12" width="8" height="28" fill="white"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Transaction Analytics</h3>
+          <p class="text-white/60 mb-4">In-depth analysis of transaction patterns, volumes, and trends across your membership.</p>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>✓ Volume analytics</li>
+            <li>✓ Pattern recognition</li>
+            <li>✓ Category analysis</li>
+            <li>✓ Velocity trends</li>
+          </ul>
+        </div>
+
+        <div class="scroll-reveal border border-white/10 rounded p-8 hover:border-white/30 transition-colors">
+          <div class="w-12 h-12 border border-white/10 rounded flex items-center justify-center mb-6">
+            <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+              <rect x="10" y="28" width="8" height="12" fill="white"/>
+              <rect x="20" y="20" width="8" height="20" fill="white"/>
+              <rect x="30" y="12" width="8" height="28" fill="white"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Revenue Insights</h3>
+          <p class="text-white/60 mb-4">Comprehensive revenue analysis including stream breakdown and growth metrics.</p>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>✓ Revenue streams</li>
+            <li>✓ Margin analysis</li>
+            <li>✓ Growth trends</li>
+            <li>✓ Profitability insights</li>
+          </ul>
+        </div>
+
+        <div class="scroll-reveal border border-white/10 rounded p-8 hover:border-white/30 transition-colors">
+          <div class="w-12 h-12 border border-white/10 rounded flex items-center justify-center mb-6">
+            <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+              <rect x="10" y="28" width="8" height="12" fill="white"/>
+              <rect x="20" y="20" width="8" height="20" fill="white"/>
+              <rect x="30" y="12" width="8" height="28" fill="white"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Cohort Analysis</h3>
+          <p class="text-white/60 mb-4">Track and compare member cohorts over time to measure lifecycle and retention.</p>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>✓ Cohort grouping</li>
+            <li>✓ Retention curves</li>
+            <li>✓ Lifetime value</li>
+            <li>✓ Churn analysis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Specs -->
+  <section class="border-b border-white/10 bg-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-5xl font-bold mb-4">Technical specifications</h2>
+        <p class="text-xl text-white/60">Production-tested and battle-hardened</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <div class="scroll-reveal">
+          <h3 class="text-2xl font-bold mb-6">Data Architecture</h3>
+          <ul class="space-y-3">
+            <li class="flex justify-between border-b border-white/10 pb-3">
+              <span class="text-white/60">Data Warehouse</span>
+              <span class="font-bold">Cloud-based OLAP</span>
+            </li>
+            <li class="flex justify-between border-b border-white/10 pb-3">
+              <span class="text-white/60">Ingestion Latency</span>
+              <span class="font-bold">Real-time streaming</span>
+            </li>
+            <li class="flex justify-between border-b border-white/10 pb-3">
+              <span class="text-white/60">Data Retention</span>
+              <span class="font-bold">7 years minimum</span>
+            </li>
+            <li class="flex justify-between border-b border-white/10 pb-3">
+              <span class="text-white/60">Processing</span>
+              <span class="font-bold">Batch + real-time</span>
+            </li>
+            <li class="flex justify-between">
+              <span class="text-white/60">Backup Strategy</span>
+              <span class="font-bold">Geo-redundant</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="scroll-reveal">
+          <h3 class="text-2xl font-bold mb-6">Analytics Capabilities</h3>
+          <ul class="space-y-3">
+            <li class="flex justify-between border-b border-white/10 pb-3">
+              <span class="text-white/60">Custom Dashboards</span>
+              <span class="font-bold">Unlimited</span>
+            </li>
+            <li class="flex justify-between border-b border-white/10 pb-3">
+              <span class="text-white/60">Report Templates</span>
+              <span class="font-bold">50+ pre-built</span>
+            </li>
+            <li class="flex justify-between border-b border-white/10 pb-3">
+              <span class="text-white/60">Drill-down Levels</span>
+              <span class="font-bold">Multi-level</span>
+            </li>
+            <li class="flex justify-between border-b border-white/10 pb-3">
+              <span class="text-white/60">Visualization Types</span>
+              <span class="font-bold">25+ chart types</span>
+            </li>
+            <li class="flex justify-between">
+              <span class="text-white/60">ML Models</span>
+              <span class="font-bold">10+ included</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="scroll-reveal">
+          <h3 class="text-2xl font-bold mb-6">Performance</h3>
+          <ul class="space-y-3">
+            <li class="flex justify-between border-b border-white/10 pb-3">
+              <span class="text-white/60">Dashboard Load Time</span>
+              <span class="font-bold">&lt;2 seconds p95</span>
+            </li>
+            <li class="flex justify-between border-b border-white/10 pb-3">
+              <span class="text-white/60">Query Response</span>
+              <span class="font-bold">&lt;5 seconds avg</span>
+            </li>
+            <li class="flex justify-between border-b border-white/10 pb-3">
+              <span class="text-white/60">Concurrent Users</span>
+              <span class="font-bold">5,000+ users</span>
+            </li>
+            <li class="flex justify-between border-b border-white/10 pb-3">
+              <span class="text-white/60">Data Throughput</span>
+              <span class="font-bold">1B+ events/day</span>
+            </li>
+            <li class="flex justify-between">
+              <span class="text-white/60">System Uptime SLA</span>
+              <span class="font-bold">99.95%</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="scroll-reveal">
+          <h3 class="text-2xl font-bold mb-6">What's Included</h3>
+          <ul class="space-y-3">
+            <li class="flex gap-3">
+              <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Complete source code access</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Docker deployment configs</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Kubernetes manifests</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>CI/CD pipeline templates</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Sample client SDKs (JS, Swift, Kotlin)</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>API documentation & Postman collection</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-5xl font-bold mb-6">Choose your option</h2>
+        <p class="text-xl text-white/60">Buy this adapter individually or get the complete suite</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <!-- Individual Adapter -->
+        <div class="scroll-reveal bg-white/5 border-2 border-white/20 rounded-2xl p-12 hover:border-white/40 transition-colors">
+          <div class="text-center mb-8">
+            <div class="text-sm font-bold text-white/60 mb-4">INDIVIDUAL ADAPTER</div>
+            <h3 class="text-2xl font-bold mb-6">Analytics & Insights</h3>
+            <div class="flex justify-center gap-6 mb-6">
+              <div>
+                <div class="text-5xl font-bold mb-2">$8K</div>
+                <div class="text-white/60 text-sm">one-time</div>
+              </div>
+              <div class="border-l border-white/20"></div>
+              <div>
+                <div class="text-5xl font-bold mb-2">$300</div>
+                <div class="text-white/60 text-sm">per month</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-white/10 pt-8 mb-8">
+            <ul class="space-y-4 text-left">
+              <li class="flex gap-3">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Analytics adapter only</span>
+              </li>
+              <li class="flex gap-3">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>All 9 analytics features</span>
+              </li>
+              <li class="flex gap-3">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>24/7 technical support</span>
+              </li>
+              <li class="flex gap-3">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Monthly platform updates</span>
+              </li>
+              <li class="flex gap-3">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>7 day deployment</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <button class="bg-white text-black px-12 py-5 rounded font-bold text-xl hover:bg-white/90 transition-colors">
+              Purchase Adapter - $8K
+            </button>
+            <button class="border-2 border-white/20 px-12 py-5 rounded font-bold text-xl hover:border-white/40 hover:bg-white/5 transition-all duration-300">
+              Schedule Demo
+            </button>
+          </div>
+        </div>
+
+        <!-- Complete Suite -->
+        <div class="scroll-reveal border-2 border-white rounded p-12 hover:border-white/80 transition-colors">
+          <div class="text-center mb-8">
+            <div class="text-sm font-bold text-white/60 mb-4">COMPLETE SUITE</div>
+            <h3 class="text-2xl font-bold mb-6">All 10 Adapters</h3>
+            <div class="mb-6">
+              <div class="text-6xl font-bold mb-2">$50,000</div>
+              <div class="text-white/60 text-sm">one-time perpetual license</div>
+            </div>
+          </div>
+
+          <div class="border-t border-white/10 pt-8 mb-8">
+            <ul class="space-y-4 text-left">
+              <li class="flex gap-3">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span><strong>All 10 adapters included</strong></span>
+              </li>
+              <li class="flex gap-3">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Lifetime access - no expiration</span>
+              </li>
+              <li class="flex gap-3">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>No monthly maintenance fees</span>
+              </li>
+              <li class="flex gap-3">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Lifetime updates & support</span>
+              </li>
+              <li class="flex gap-3">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Priority white-glove onboarding</span>
+              </li>
+            </ul>
+
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <button class="bg-white text-black px-12 py-5 rounded font-bold text-xl hover:bg-white/90 transition-colors">
+              Get Complete Suite - $50K
+            </button>
+            <button class="border-2 border-white/40 px-12 py-5 rounded font-bold text-xl hover:border-white hover:bg-white/5 transition-all duration-300">
+              View All Adapters
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-black border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-24 text-center">
+      <div class="scroll-reveal">
+        <h2 class="text-5xl font-bold mb-6">Ready to deploy?</h2>
+        <p class="text-xl text-white/60 mb-12 max-w-2xl mx-auto">
+          Production-ready analytics platform. Deploy in days, not years.
+        </p>
+        <div class="flex gap-6 justify-center">
+          <a href="stripe-checkout.html" class="bg-white text-black px-12 py-5 rounded font-bold text-xl hover:bg-white/90 transition-colors">
+            Purchase Now
+          </a>
+          <button class="border border-white/20 px-12 py-5 rounded font-bold text-xl hover:border-white hover:bg-white hover:text-black transition-all">
+            Schedule Demo
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+      <div class="flex justify-between items-center">
+        <div class="text-2xl font-bold">cu.app</div>
+        <div class="flex gap-8 text-sm text-white/60">
+          <a href="product-page-v2.html" class="hover:text-white transition-colors">All Adapters</a>
+          <a href="#" class="hover:text-white transition-colors">Documentation</a>
+          <a href="#" class="hover:text-white transition-colors">API Reference</a>
+          <a href="#" class="hover:text-white transition-colors">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Parallax effect for floating elements
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallax = document.querySelectorAll('.animate-float');
+      parallax.forEach(el => {
+        const speed = 0.5;
+        el.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    });
+  </script>
+
+</body>
+</html>

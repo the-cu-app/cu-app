@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CU.APP - Banking Infrastructure for Modern Credit Unions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+  </style>
+</head>
+<body class="bg-black text-white antialiased">
+
+  <!-- Hero -->
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="max-w-3xl">
+        <h1 class="text-6xl font-bold tracking-tight mb-6">
+          Banking infrastructure for modern credit unions
+        </h1>
+        <p class="text-xl text-white/60 mb-8">
+          Production-ready digital banking platform. Deploy in days, not years.
+        </p>
+        <div class="flex gap-4">
+          <button class="bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-white/90 transition-colors">
+            Start Free Trial
+          </button>
+          <button class="border border-white/20 px-6 py-3 rounded-lg font-medium hover:border-white/40 transition-colors">
+            View Demo
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Simple, transparent pricing</h2>
+        <p class="text-white/60">Start free. Scale as you grow.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Free -->
+        <div class="border border-white/10 rounded-xl p-8 hover:border-white/20 transition-colors">
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-2">Free</h3>
+            <div class="flex items-baseline gap-2 mb-4">
+              <span class="text-5xl font-bold">$0</span>
+              <span class="text-white/60">/month</span>
+            </div>
+            <p class="text-white/60">Perfect for testing</p>
+          </div>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">1,000 API calls/month</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">512 MB storage</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">1 GB bandwidth</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">Basic features</span>
+            </li>
+          </ul>
+
+          <button class="w-full border border-white/20 py-3 rounded-lg font-medium hover:bg-white hover:text-black transition-all">
+            Get Started
+          </button>
+        </div>
+
+        <!-- Pro -->
+        <div class="border border-white rounded-xl p-8 relative bg-white/5">
+          <div class="absolute -top-3 left-6">
+            <span class="bg-white text-black text-xs font-bold px-3 py-1 rounded-full">
+              POPULAR
+            </span>
+          </div>
+
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-2">Pro</h3>
+            <div class="flex items-baseline gap-2 mb-4">
+              <span class="text-5xl font-bold">$990</span>
+              <span class="text-white/60">/month</span>
+            </div>
+            <p class="text-white/60">For production apps</p>
+          </div>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">50,000 API calls/month</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">10 GB storage</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">20 GB bandwidth</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">1,000 content generations</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">50 deployments/month</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">Priority support</span>
+            </li>
+          </ul>
+
+          <button class="w-full bg-white text-black py-3 rounded-lg font-medium hover:bg-white/90 transition-colors">
+            Start Pro Trial
+          </button>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="border border-white/10 rounded-xl p-8 hover:border-white/20 transition-colors">
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
+            <div class="flex items-baseline gap-2 mb-4">
+              <span class="text-5xl font-bold">Custom</span>
+            </div>
+            <p class="text-white/60">For large institutions</p>
+          </div>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">500,000+ API calls/month</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">100 GB storage</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">200 GB bandwidth</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">10,000+ content generations</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">Unlimited deployments</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">Dedicated support</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">Custom SLA</span>
+            </li>
+          </ul>
+
+          <button class="w-full border border-white/20 py-3 rounded-lg font-medium hover:bg-white hover:text-black transition-all">
+            Contact Sales
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Production-ready products</h2>
+        <p class="text-white/60">Deploy complete banking features in minutes</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Digital Banking Core -->
+        <div class="border border-white/10 rounded-xl p-8 hover:border-white/20 transition-colors group">
+          <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Digital Banking Core</h3>
+          <p class="text-white/60 mb-6">
+            Complete banking platform with accounts, cards, transactions, and payments.
+            Mobile deposits, bill pay, and Zelle included.
+          </p>
+          <ul class="space-y-2 mb-6">
+            <li class="text-sm text-white/60">• Multi-account support</li>
+            <li class="text-sm text-white/60">• Real-time balance updates</li>
+            <li class="text-sm text-white/60">• Transaction categorization</li>
+            <li class="text-sm text-white/60">• ACH + Wire transfers</li>
+          </ul>
+          <a href="#" class="inline-flex items-center gap-2 text-sm font-medium">
+            Learn more
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Payment Processing -->
+        <div class="border border-white/10 rounded-xl p-8 hover:border-white/20 transition-colors group">
+          <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Payment Processing</h3>
+          <p class="text-white/60 mb-6">
+            ISO20022-compliant payment platform. Future-proof payment standards
+            with real-time status tracking.
+          </p>
+          <ul class="space-y-2 mb-6">
+            <li class="text-sm text-white/60">• ISO20022 native</li>
+            <li class="text-sm text-white/60">• Credit transfers</li>
+            <li class="text-sm text-white/60">• Direct debits</li>
+            <li class="text-sm text-white/60">• Multi-currency support</li>
+          </ul>
+          <a href="#" class="inline-flex items-center gap-2 text-sm font-medium">
+            Learn more
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Compliance Platform -->
+        <div class="border border-white/10 rounded-xl p-8 hover:border-white/20 transition-colors group">
+          <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Compliance & Risk</h3>
+          <p class="text-white/60 mb-6">
+            CFPB 1033 data portability, sanctions screening, KYC/AML workflows,
+            and fraud detection built-in.
+          </p>
+          <ul class="space-y-2 mb-6">
+            <li class="text-sm text-white/60">• CFPB 1033 compliant</li>
+            <li class="text-sm text-white/60">• Real-time fraud detection</li>
+            <li class="text-sm text-white/60">• Audit trails</li>
+            <li class="text-sm text-white/60">• Risk assessments</li>
+          </ul>
+          <a href="#" class="inline-flex items-center gap-2 text-sm font-medium">
+            Learn more
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- API Platform -->
+        <div class="border border-white/10 rounded-xl p-8 hover:border-white/20 transition-colors group">
+          <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">API Platform</h3>
+          <p class="text-white/60 mb-6">
+            RESTful APIs for all banking operations. OAuth 2.0, webhooks,
+            rate limiting, and complete API documentation.
+          </p>
+          <ul class="space-y-2 mb-6">
+            <li class="text-sm text-white/60">• RESTful APIs</li>
+            <li class="text-sm text-white/60">• OAuth 2.0</li>
+            <li class="text-sm text-white/60">• Webhook system</li>
+            <li class="text-sm text-white/60">• Usage analytics</li>
+          </ul>
+          <a href="#" class="inline-flex items-center gap-2 text-sm font-medium">
+            Learn more
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Everything you need</h2>
+        <p class="text-white/60">316+ database tables. Production-tested.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="font-bold mb-3">Member Management</h3>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>• Multi-factor authentication</li>
+            <li>• Biometric support</li>
+            <li>• Device management</li>
+            <li>• Session tracking</li>
+            <li>• Security audit logs</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold mb-3">Financial Wellness</h3>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>• Budget management</li>
+            <li>• Goal tracking</li>
+            <li>• Credit score monitoring</li>
+            <li>• Financial calculators</li>
+            <li>• AI recommendations</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold mb-3">Analytics & Insights</h3>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>• Real-time dashboards</li>
+            <li>• Spending analytics</li>
+            <li>• Cash flow forecasting</li>
+            <li>• A/B testing</li>
+            <li>• User behavior tracking</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold mb-3">Design System</h3>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>• 300+ components</li>
+            <li>• Design tokens</li>
+            <li>• Theme customization</li>
+            <li>• White-label ready</li>
+            <li>• Animation library</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold mb-3">Communications</h3>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>• Real-time chat</li>
+            <li>• Push notifications</li>
+            <li>• Email campaigns</li>
+            <li>• In-app messaging</li>
+            <li>• Support ticketing</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold mb-3">Multi-Tenant</h3>
+          <ul class="space-y-2 text-sm text-white/60">
+            <li>• Tenant isolation</li>
+            <li>• Custom branding</li>
+            <li>• Feature flags per tenant</li>
+            <li>• Usage tracking</li>
+            <li>• Domain verification</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-5xl font-bold mb-2">316+</div>
+          <div class="text-white/60">Database Tables</div>
+        </div>
+        <div class="text-center">
+          <div class="text-5xl font-bold mb-2">8</div>
+          <div class="text-white/60">Products Ready</div>
+        </div>
+        <div class="text-center">
+          <div class="text-5xl font-bold mb-2">99.9%</div>
+          <div class="text-white/60">Uptime SLA</div>
+        </div>
+        <div class="text-center">
+          <div class="text-5xl font-bold mb-2">24/7</div>
+          <div class="text-white/60">Support</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="border border-white/10 rounded-2xl p-12 text-center">
+        <h2 class="text-4xl font-bold mb-4">Ready to get started?</h2>
+        <p class="text-xl text-white/60 mb-8 max-w-2xl mx-auto">
+          Join credit unions building the future of digital banking.
+          Start free, no credit card required.
+        </p>
+        <div class="flex gap-4 justify-center">
+          <button class="bg-white text-black px-8 py-4 rounded-lg font-medium hover:bg-white/90 transition-colors">
+            Start Free Trial
+          </button>
+          <button class="border border-white/20 px-8 py-4 rounded-lg font-medium hover:border-white/40 transition-colors">
+            Schedule Demo
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+      <div class="flex justify-between items-center">
+        <div class="text-2xl font-bold">cu.app</div>
+        <div class="flex gap-8 text-sm text-white/60">
+          <a href="#" class="hover:text-white transition-colors">Documentation</a>
+          <a href="#" class="hover:text-white transition-colors">API Reference</a>
+          <a href="https://svaiikywglmwedraxyda.supabase.co" class="hover:text-white transition-colors">Database</a>
+          <a href="https://dashboard.stripe.com" class="hover:text-white transition-colors">Stripe</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

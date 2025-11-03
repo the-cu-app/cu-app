@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CU.APP - Banking Adapters & Complete Suite</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+  </style>
+</head>
+<body class="bg-black text-white antialiased">
+
+  <!-- Hero -->
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="max-w-3xl">
+        <h1 class="text-6xl font-bold tracking-tight mb-6">
+          Banking adapters.<br/>Complete suite.<br/>Your choice.
+        </h1>
+        <p class="text-xl text-white/60 mb-8">
+          Buy individual adapters à la carte or get the complete suite with perpetual license for $50K one-time.
+        </p>
+        <div class="flex gap-4">
+          <button class="bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-white/90 transition-colors">
+            View Complete Suite
+          </button>
+          <button class="border border-white/20 px-6 py-3 rounded-lg font-medium hover:border-white/40 transition-colors">
+            Browse Adapters
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Complete Suite - Hero Offer -->
+  <section class="border-b border-white/10 bg-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-block bg-white text-black text-xs font-bold px-4 py-2 rounded-full mb-6">
+          BEST VALUE - $50K ONE-TIME
+        </div>
+        <h2 class="text-5xl font-bold mb-6">Complete Suite - Perpetual License</h2>
+        <p class="text-2xl text-white/60 mb-8">
+          All 10 adapters. Forever. No recurring fees.
+        </p>
+
+        <div class="bg-black border border-white/20 rounded-2xl p-8 mb-8">
+          <div class="flex items-baseline justify-center gap-3 mb-6">
+            <span class="text-6xl font-bold">$50,000</span>
+            <span class="text-2xl text-white/60">one-time</span>
+          </div>
+          <div class="text-white/60 mb-8">
+            <div class="line-through mb-2">Individual adapters: $110,000 total</div>
+            <div class="text-2xl font-bold text-white">You save: $60,000 (55% off)</div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4 text-left mb-8">
+            <div class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">All 10 adapters included</span>
+            </div>
+            <div class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">Lifetime updates & support</span>
+            </div>
+            <div class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">Unlimited usage</span>
+            </div>
+            <div class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">No monthly fees</span>
+            </div>
+            <div class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">Priority support</span>
+            </div>
+            <div class="flex gap-3">
+              <svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-sm">White-glove onboarding</span>
+            </div>
+          </div>
+
+          <button class="w-full bg-white text-black py-4 rounded-lg font-bold text-lg hover:bg-white/90 transition-colors">
+            Purchase Complete Suite - $50K
+          </button>
+        </div>
+
+        <p class="text-sm text-white/40">
+          Or browse individual adapters below
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Individual Adapters -->
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Individual Adapters</h2>
+        <p class="text-white/60">Production-ready modules. Buy what you need.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Digital Banking Core -->
+        <div class="border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-bold">Digital Banking Core</h3>
+            <div class="text-right">
+              <div class="text-2xl font-bold">$15K</div>
+              <div class="text-xs text-white/60">+$500/mo</div>
+            </div>
+          </div>
+          <p class="text-sm text-white/60 mb-4">
+            Accounts, cards, transactions, payments, mobile deposits, bill pay, Zelle
+          </p>
+          <ul class="space-y-2 mb-6 text-sm">
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Multi-account support</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Real-time balances</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>ACH + Wire transfers</span>
+            </li>
+          </ul>
+          <button class="w-full border border-white/20 py-2 rounded-lg text-sm font-medium hover:bg-white hover:text-black transition-all">
+            Purchase Adapter
+          </button>
+        </div>
+
+        <!-- ISO20022 Payments -->
+        <div class="border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-bold">ISO20022 Payments</h3>
+            <div class="text-right">
+              <div class="text-2xl font-bold">$12K</div>
+              <div class="text-xs text-white/60">+$400/mo</div>
+            </div>
+          </div>
+          <p class="text-sm text-white/60 mb-4">
+            ISO20022-compliant payment processing with real-time status tracking
+          </p>
+          <ul class="space-y-2 mb-6 text-sm">
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>ISO20022 native</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Multi-currency support</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Real-time status</span>
+            </li>
+          </ul>
+          <button class="w-full border border-white/20 py-2 rounded-lg text-sm font-medium hover:bg-white hover:text-black transition-all">
+            Purchase Adapter
+          </button>
+        </div>
+
+        <!-- Compliance & Risk -->
+        <div class="border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-bold">Compliance & Risk</h3>
+            <div class="text-right">
+              <div class="text-2xl font-bold">$10K</div>
+              <div class="text-xs text-white/60">+$300/mo</div>
+            </div>
+          </div>
+          <p class="text-sm text-white/60 mb-4">
+            CFPB 1033, sanctions screening, KYC/AML, fraud detection
+          </p>
+          <ul class="space-y-2 mb-6 text-sm">
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>CFPB 1033 compliant</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Fraud detection</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Audit trails</span>
+            </li>
+          </ul>
+          <button class="w-full border border-white/20 py-2 rounded-lg text-sm font-medium hover:bg-white hover:text-black transition-all">
+            Purchase Adapter
+          </button>
+        </div>
+
+        <!-- Financial Wellness -->
+        <div class="border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-bold">Financial Wellness</h3>
+            <div class="text-right">
+              <div class="text-2xl font-bold">$8K</div>
+              <div class="text-xs text-white/60">+$250/mo</div>
+            </div>
+          </div>
+          <p class="text-sm text-white/60 mb-4">
+            Budgeting, goals, credit monitoring, financial education, AI insights
+          </p>
+          <ul class="space-y-2 mb-6 text-sm">
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Budget management</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Credit score monitoring</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>AI recommendations</span>
+            </li>
+          </ul>
+          <button class="w-full border border-white/20 py-2 rounded-lg text-sm font-medium hover:bg-white hover:text-black transition-all">
+            Purchase Adapter
+          </button>
+        </div>
+
+        <!-- Card Management -->
+        <div class="border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-bold">Card Management</h3>
+            <div class="text-right">
+              <div class="text-2xl font-bold">$9K</div>
+              <div class="text-xs text-white/60">+$300/mo</div>
+            </div>
+          </div>
+          <p class="text-sm text-white/60 mb-4">
+            Debit, credit, virtual cards with real-time controls and fraud monitoring
+          </p>
+          <ul class="space-y-2 mb-6 text-sm">
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Card issuance</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Real-time controls</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Virtual cards</span>
+            </li>
+          </ul>
+          <button class="w-full border border-white/20 py-2 rounded-lg text-sm font-medium hover:bg-white hover:text-black transition-all">
+            Purchase Adapter
+          </button>
+        </div>
+
+        <!-- Loan Origination -->
+        <div class="border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-bold">Loan Origination</h3>
+            <div class="text-right">
+              <div class="text-2xl font-bold">$18K</div>
+              <div class="text-xs text-white/60">+$600/mo</div>
+            </div>
+          </div>
+          <p class="text-sm text-white/60 mb-4">
+            Personal, auto, mortgage loans with credit decisioning and servicing
+          </p>
+          <ul class="space-y-2 mb-6 text-sm">
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Digital applications</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Automated decisioning</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Loan servicing</span>
+            </li>
+          </ul>
+          <button class="w-full border border-white/20 py-2 rounded-lg text-sm font-medium hover:bg-white hover:text-black transition-all">
+            Purchase Adapter
+          </button>
+        </div>
+
+        <!-- Investment Platform -->
+        <div class="border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-bold">Investment Platform</h3>
+            <div class="text-right">
+              <div class="text-2xl font-bold">$20K</div>
+              <div class="text-xs text-white/60">+$700/mo</div>
+            </div>
+          </div>
+          <p class="text-sm text-white/60 mb-4">
+            Investment accounts, portfolio management, trading execution
+          </p>
+          <ul class="space-y-2 mb-6 text-sm">
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Portfolio tracking</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Trading execution</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Tax documents</span>
+            </li>
+          </ul>
+          <button class="w-full border border-white/20 py-2 rounded-lg text-sm font-medium hover:bg-white hover:text-black transition-all">
+            Purchase Adapter
+          </button>
+        </div>
+
+        <!-- Design System -->
+        <div class="border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-bold">Design System</h3>
+            <div class="text-right">
+              <div class="text-2xl font-bold">$5K</div>
+              <div class="text-xs text-white/60">+$100/mo</div>
+            </div>
+          </div>
+          <p class="text-sm text-white/60 mb-4">
+            300+ components, design tokens, white-label theming, animations
+          </p>
+          <ul class="space-y-2 mb-6 text-sm">
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>300+ components</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Theme customization</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>A/B testing</span>
+            </li>
+          </ul>
+          <button class="w-full border border-white/20 py-2 rounded-lg text-sm font-medium hover:bg-white hover:text-black transition-all">
+            Purchase Adapter
+          </button>
+        </div>
+
+        <!-- Communications -->
+        <div class="border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-bold">Communications</h3>
+            <div class="text-right">
+              <div class="text-2xl font-bold">$6K</div>
+              <div class="text-xs text-white/60">+$200/mo</div>
+            </div>
+          </div>
+          <p class="text-sm text-white/60 mb-4">
+            Real-time chat, push notifications, email campaigns, SMS
+          </p>
+          <ul class="space-y-2 mb-6 text-sm">
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Real-time chat</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Push notifications</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Support ticketing</span>
+            </li>
+          </ul>
+          <button class="w-full border border-white/20 py-2 rounded-lg text-sm font-medium hover:bg-white hover:text-black transition-all">
+            Purchase Adapter
+          </button>
+        </div>
+
+        <!-- Analytics & Insights -->
+        <div class="border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-bold">Analytics & Insights</h3>
+            <div class="text-right">
+              <div class="text-2xl font-bold">$7K</div>
+              <div class="text-xs text-white/60">+$250/mo</div>
+            </div>
+          </div>
+          <p class="text-sm text-white/60 mb-4">
+            Real-time dashboards, spending analytics, cash flow forecasting
+          </p>
+          <ul class="space-y-2 mb-6 text-sm">
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Real-time dashboards</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>A/B testing</span>
+            </li>
+            <li class="flex gap-2 text-white/60">
+              <span>•</span>
+              <span>Custom reports</span>
+            </li>
+          </ul>
+          <button class="w-full border border-white/20 py-2 rounded-lg text-sm font-medium hover:bg-white hover:text-black transition-all">
+            Purchase Adapter
+          </button>
+        </div>
+      </div>
+
+      <!-- Pricing Summary -->
+      <div class="mt-16 bg-white/5 border border-white/10 rounded-2xl p-8">
+        <h3 class="text-2xl font-bold mb-6 text-center">Pricing Summary</h3>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h4 class="font-bold mb-4">Individual Adapters (À La Carte)</h4>
+            <table class="w-full text-sm">
+              <tr class="border-b border-white/10">
+                <td class="py-2 text-white/60">Digital Banking Core</td>
+                <td class="py-2 text-right">$15,000 + $500/mo</td>
+              </tr>
+              <tr class="border-b border-white/10">
+                <td class="py-2 text-white/60">ISO20022 Payments</td>
+                <td class="py-2 text-right">$12,000 + $400/mo</td>
+              </tr>
+              <tr class="border-b border-white/10">
+                <td class="py-2 text-white/60">Compliance & Risk</td>
+                <td class="py-2 text-right">$10,000 + $300/mo</td>
+              </tr>
+              <tr class="border-b border-white/10">
+                <td class="py-2 text-white/60">Financial Wellness</td>
+                <td class="py-2 text-right">$8,000 + $250/mo</td>
+              </tr>
+              <tr class="border-b border-white/10">
+                <td class="py-2 text-white/60">Card Management</td>
+                <td class="py-2 text-right">$9,000 + $300/mo</td>
+              </tr>
+              <tr class="border-b border-white/10">
+                <td class="py-2 text-white/60">Loan Origination</td>
+                <td class="py-2 text-right">$18,000 + $600/mo</td>
+              </tr>
+              <tr class="border-b border-white/10">
+                <td class="py-2 text-white/60">Investment Platform</td>
+                <td class="py-2 text-right">$20,000 + $700/mo</td>
+              </tr>
+              <tr class="border-b border-white/10">
+                <td class="py-2 text-white/60">Design System</td>
+                <td class="py-2 text-right">$5,000 + $100/mo</td>
+              </tr>
+              <tr class="border-b border-white/10">
+                <td class="py-2 text-white/60">Communications</td>
+                <td class="py-2 text-right">$6,000 + $200/mo</td>
+              </tr>
+              <tr class="border-b border-white/10">
+                <td class="py-2 text-white/60">Analytics & Insights</td>
+                <td class="py-2 text-right">$7,000 + $250/mo</td>
+              </tr>
+              <tr class="font-bold text-lg">
+                <td class="py-4">Total (All Separate)</td>
+                <td class="py-4 text-right">$110,000 + $3,600/mo</td>
+              </tr>
+            </table>
+          </div>
+
+          <div>
+            <h4 class="font-bold mb-4">Complete Suite (Best Value)</h4>
+            <div class="bg-black border border-white/20 rounded-xl p-6">
+              <div class="text-center mb-4">
+                <div class="text-4xl font-bold mb-2">$50,000</div>
+                <div class="text-white/60">One-time perpetual license</div>
+              </div>
+              <div class="space-y-2 mb-6">
+                <div class="flex justify-between text-sm">
+                  <span class="text-white/60">À la carte price:</span>
+                  <span>$110,000</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                  <span class="text-white/60">Suite price:</span>
+                  <span>$50,000</span>
+                </div>
+                <div class="flex justify-between text-lg font-bold border-t border-white/10 pt-2">
+                  <span>You save:</span>
+                  <span class="text-green-400">$60,000</span>
+                </div>
+              </div>
+              <ul class="space-y-2 text-sm text-white/60 mb-6">
+                <li>✓ All 10 adapters included</li>
+                <li>✓ No monthly maintenance fees</li>
+                <li>✓ Lifetime updates</li>
+                <li>✓ Priority support</li>
+                <li>✓ White-glove onboarding</li>
+              </ul>
+              <button class="w-full bg-white text-black py-3 rounded-lg font-bold hover:bg-white/90 transition-colors">
+                Purchase Suite - $50K
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Subscriptions -->
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Platform Subscriptions</h2>
+        <p class="text-white/60">For teams building on top of cu.app APIs</p>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-6">
+        <!-- Free -->
+        <div class="border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
+          <h3 class="text-xl font-bold mb-2">Free</h3>
+          <div class="text-3xl font-bold mb-4">$0<span class="text-sm text-white/60">/mo</span></div>
+          <ul class="space-y-2 text-sm text-white/60 mb-6">
+            <li>• 1K API calls/mo</li>
+            <li>• 512 MB storage</li>
+            <li>• 1 GB bandwidth</li>
+            <li>• Basic features</li>
+          </ul>
+          <button class="w-full border border-white/20 py-2 rounded-lg text-sm font-medium hover:bg-white hover:text-black transition-all">
+            Get Started
+          </button>
+        </div>
+
+        <!-- Pro -->
+        <div class="border border-white rounded-xl p-6 bg-white/5 relative">
+          <div class="absolute -top-3 left-4">
+            <span class="bg-white text-black text-xs font-bold px-3 py-1 rounded-full">POPULAR</span>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Pro</h3>
+          <div class="text-3xl font-bold mb-4">$990<span class="text-sm text-white/60">/mo</span></div>
+          <ul class="space-y-2 text-sm text-white/60 mb-6">
+            <li>• 50K API calls/mo</li>
+            <li>• 10 GB storage</li>
+            <li>• 20 GB bandwidth</li>
+            <li>• 1K content gens</li>
+            <li>• Priority support</li>
+          </ul>
+          <button class="w-full bg-white text-black py-2 rounded-lg text-sm font-bold hover:bg-white/90 transition-colors">
+            Start Pro Trial
+          </button>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors">
+          <h3 class="text-xl font-bold mb-2">Enterprise</h3>
+          <div class="text-3xl font-bold mb-4">Custom</div>
+          <ul class="space-y-2 text-sm text-white/60 mb-6">
+            <li>• 500K+ API calls</li>
+            <li>• 100 GB storage</li>
+            <li>• 200 GB bandwidth</li>
+            <li>• Unlimited gens</li>
+            <li>• Dedicated support</li>
+          </ul>
+          <button class="w-full border border-white/20 py-2 rounded-lg text-sm font-medium hover:bg-white hover:text-black transition-all">
+            Contact Sales
+          </button>
+        </div>
+
+        <!-- Perpetual -->
+        <div class="border-2 border-white rounded-xl p-6 bg-white/5 relative">
+          <div class="absolute -top-3 left-4">
+            <span class="bg-green-500 text-black text-xs font-bold px-3 py-1 rounded-full">BEST VALUE</span>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Perpetual</h3>
+          <div class="text-3xl font-bold mb-4">$50K<span class="text-sm text-white/60"> once</span></div>
+          <ul class="space-y-2 text-sm text-white/60 mb-6">
+            <li>• Unlimited everything</li>
+            <li>• All 10 adapters</li>
+            <li>• Lifetime access</li>
+            <li>• No monthly fees</li>
+            <li>• Priority support</li>
+          </ul>
+          <button class="w-full bg-white text-black py-2 rounded-lg text-sm font-bold hover:bg-white/90 transition-colors">
+            Buy Perpetual
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="max-w-7xl mx-auto px-6 py-24">
+      <div class="border border-white/10 rounded-2xl p-12 text-center">
+        <h2 class="text-4xl font-bold mb-4">Ready to build?</h2>
+        <p class="text-xl text-white/60 mb-8 max-w-2xl mx-auto">
+          Buy individual adapters or get the complete suite with perpetual license.
+        </p>
+        <div class="flex gap-4 justify-center">
+          <button class="bg-white text-black px-8 py-4 rounded-lg font-medium hover:bg-white/90 transition-colors">
+            Purchase Complete Suite - $50K
+          </button>
+          <button class="border border-white/20 px-8 py-4 rounded-lg font-medium hover:border-white/40 transition-colors">
+            Browse Individual Adapters
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+      <div class="flex justify-between items-center">
+        <div class="text-2xl font-bold">cu.app</div>
+        <div class="flex gap-8 text-sm text-white/60">
+          <a href="#" class="hover:text-white transition-colors">Documentation</a>
+          <a href="#" class="hover:text-white transition-colors">API Reference</a>
+          <a href="https://dashboard.stripe.com" class="hover:text-white transition-colors">Payments</a>
+          <a href="#" class="hover:text-white transition-colors">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
