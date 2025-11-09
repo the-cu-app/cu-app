@@ -1,0 +1,940 @@
+openapi: 3.1.0
+
+info:
+  title: CU.APP Banking API
+  version: 1.0.0
+  description: |
+    Production-grade, vendor-neutral banking API for credit unions.
+
+    **FDX v6.4 Aligned** - Compliant with Financial Data Exchange standard for consumer data portability (Section 1033 CFPB).
+
+    **Features:**
+    - OAuth2 authorization code flow with granular scopes
+    - Consent-based data access with consent_id tracking
+    - Standardized pagination with page tokens
+    - RFC 7807 Problem Details for errors
+    - ISO 8601 dates, string-based currency decimals
+    - Masked PII in all examples
+
+  contact:
+    name: CU.APP Support
+    email: support@cu.app
+    url: https://docs.cu.app
+
+  license:
+    name: Proprietary
+    url: https://cu.app/license
+
+servers:
+  - url: https://api-{env}.cu.app/v1
+    description: CU.APP Banking API
+    variables:
+      env:
+        default: prod
+        enum:
+          - dev
+          - staging
+          - prod
+        description: Environment
+
+security:
+  - OAuth2:
+      - profile.read
+      - accounts.read
+      - transactions.read
+
+tags:
+  - name: Profile
+    description: Consumer profile and personal information
+  - name: Accounts
+    description: Account aggregation and details
+  - name: Transactions
+    description: Transaction history and details
+  - name: Transfers
+    description: Money movement and transfers
+
+paths:
+  /consumers/{consumer_id}/profile:
+    get:
+      operationId: getConsumerProfile
+      summary: Get consumer profile
+      description: Retrieve consumer profile information including name, contact details, and address. All PII is masked per GLBA requirements.
+      tags:
+        - Profile
+      security:
+        - OAuth2:
+            - profile.read
+      parameters:
+        - $ref: '#/components/parameters/ConsumerId'
+        - $ref: '#/components/parameters/ConsentId'
+      responses:
+        '200':
+          description: Consumer profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /consumers/{consumer_id}/accounts:
+    get:
+      operationId: listAccounts
+      summary: List all accounts
+      description: Retrieve all accounts for a consumer, including checking, savings, loans, and credit cards.
+      tags:
+        - Accounts
+      security:
+        - OAuth2:
+            - accounts.read
+      parameters:
+        - $ref: '#/components/parameters/ConsumerId'
+        - $ref: '#/components/parameters/ConsentId'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: Accounts retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - pagination
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Account'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /consumers/{consumer_id}/accounts/{account_id}:
+    get:
+      operationId: getAccountDetails
+      summary: Get account details
+      description: Retrieve detailed information for a specific account.
+      tags:
+        - Accounts
+      security:
+        - OAuth2:
+            - accounts.read
+      parameters:
+        - $ref: '#/components/parameters/ConsumerId'
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/ConsentId'
+      responses:
+        '200':
+          description: Account details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountDetails'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /consumers/{consumer_id}/accounts/{account_id}/transactions:
+    get:
+      operationId: listTransactions
+      summary: List account transactions
+      description: Retrieve transaction history for an account with pagination and date filtering.
+      tags:
+        - Transactions
+      security:
+        - OAuth2:
+            - transactions.read
+      parameters:
+        - $ref: '#/components/parameters/ConsumerId'
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/ConsentId'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/FromDate'
+        - $ref: '#/components/parameters/ToDate'
+      responses:
+        '200':
+          description: Transactions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - pagination
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Transaction'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+              examples:
+                paginated_transactions:
+                  summary: Paginated transaction response
+                  value:
+                    data:
+                      - id: "txn_1a2b3c4d5e6f"
+                        account_id: "acct_9z8y7x6w5v"
+                        type: "DEBIT"
+                        status: "POSTED"
+                        amount: "42.50"
+                        currency_code: "USD"
+                        description: "Coffee Shop Purchase"
+                        transacted_on: "2024-10-15"
+                        posted_on: "2024-10-16"
+                        running_balance: "1957.50"
+                      - id: "txn_2b3c4d5e6f7g"
+                        account_id: "acct_9z8y7x6w5v"
+                        type: "CREDIT"
+                        status: "POSTED"
+                        amount: "1500.00"
+                        currency_code: "USD"
+                        description: "Payroll Deposit"
+                        transacted_on: "2024-10-14"
+                        posted_on: "2024-10-14"
+                        running_balance: "2000.00"
+                      - id: "txn_3c4d5e6f7g8h"
+                        account_id: "acct_9z8y7x6w5v"
+                        type: "DEBIT"
+                        status: "PENDING"
+                        amount: "89.99"
+                        currency_code: "USD"
+                        description: "Online Purchase - Pending"
+                        transacted_on: "2024-10-17"
+                        posted_on: null
+                        running_balance: null
+                    pagination:
+                      page: 1
+                      page_size: 50
+                      total_pages: 12
+                      total_count: 573
+                      next_page_token: "eyJvZmZzZXQiOjUwLCJsaW1pdCI6NTB9"
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /consumers/{consumer_id}/transfers:
+    post:
+      operationId: createTransfer
+      summary: Create a transfer
+      description: Initiate a money transfer between accounts.
+      tags:
+        - Transfers
+      security:
+        - OAuth2:
+            - transfers.write
+      parameters:
+        - $ref: '#/components/parameters/ConsumerId'
+        - $ref: '#/components/parameters/ConsentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferRequest'
+      responses:
+        '201':
+          description: Transfer created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transfer'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth2 authorization code flow with PKCE
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.cu.app/oauth/authorize
+          tokenUrl: https://auth.cu.app/oauth/token
+          refreshUrl: https://auth.cu.app/oauth/refresh
+          scopes:
+            profile.read: Read consumer profile information
+            accounts.read: Read account information and balances
+            transactions.read: Read transaction history
+            transfers.write: Create and manage transfers
+
+  parameters:
+    ConsumerId:
+      name: consumer_id
+      in: path
+      required: true
+      description: Unique consumer identifier
+      schema:
+        type: string
+        pattern: '^cons_[a-zA-Z0-9]{16}$'
+        example: cons_1a2b3c4d5e6f7g8h
+
+    AccountId:
+      name: account_id
+      in: path
+      required: true
+      description: Unique account identifier
+      schema:
+        type: string
+        pattern: '^acct_[a-zA-Z0-9]{10,12}$'
+        example: acct_9z8y7x6w5v
+
+    ConsentId:
+      name: X-Consent-ID
+      in: header
+      required: true
+      description: Consent identifier for data access tracking (Section 1033 CFPB compliance)
+      schema:
+        type: string
+        format: uuid
+        example: 550e8400-e29b-41d4-a716-446655440000
+
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number (1-indexed)
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+        example: 1
+
+    PageSize:
+      name: page_size
+      in: query
+      required: false
+      description: Number of items per page (max 200)
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 50
+        example: 50
+
+    FromDate:
+      name: from
+      in: query
+      required: false
+      description: Start date for filtering (ISO 8601 format YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
+        example: "2024-01-01"
+
+    ToDate:
+      name: to
+      in: query
+      required: false
+      description: End date for filtering (ISO 8601 format YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
+        example: "2024-12-31"
+
+  schemas:
+    UserProfile:
+      type: object
+      required:
+        - id
+        - first_name
+        - last_name
+        - email
+      properties:
+        id:
+          type: string
+          description: Unique consumer identifier
+          example: cons_1a2b3c4d5e6f7g8h
+        first_name:
+          type: string
+          description: Consumer first name
+          example: Jane
+        last_name:
+          type: string
+          description: Consumer last name
+          example: Doe
+        email:
+          $ref: '#/components/schemas/Email'
+        phone:
+          $ref: '#/components/schemas/Phone'
+        address:
+          $ref: '#/components/schemas/Address'
+        date_of_birth:
+          type: string
+          description: Date of birth (masked, month/year only for privacy)
+          example: "XXXX-05-XX"
+        created_at:
+          type: string
+          format: date-time
+          description: Account creation timestamp (ISO 8601)
+          example: "2022-03-15T14:30:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          description: Last profile update timestamp (ISO 8601)
+          example: "2024-10-01T09:15:00Z"
+
+    Address:
+      type: object
+      required:
+        - street
+        - city
+        - state
+        - postal_code
+        - country
+      properties:
+        street:
+          type: string
+          description: Street address
+          example: 123 Main Street
+        street2:
+          type: string
+          description: Apartment, suite, or unit number
+          example: Apt 4B
+        city:
+          type: string
+          description: City
+          example: Springfield
+        state:
+          type: string
+          description: State or province code (ISO 3166-2)
+          example: IL
+        postal_code:
+          type: string
+          description: Postal code or ZIP
+          example: "62701"
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2)
+          example: US
+
+    Phone:
+      type: object
+      required:
+        - number
+        - type
+      properties:
+        number:
+          type: string
+          description: Phone number in E.164 format
+          example: "+15551234567"
+        type:
+          type: string
+          enum:
+            - MOBILE
+            - HOME
+            - WORK
+          description: Phone number type
+          example: MOBILE
+        verified:
+          type: boolean
+          description: Whether phone number has been verified
+          example: true
+
+    Email:
+      type: object
+      required:
+        - address
+      properties:
+        address:
+          type: string
+          format: email
+          description: Email address
+          example: jane.doe@example.com
+        verified:
+          type: boolean
+          description: Whether email has been verified
+          example: true
+        primary:
+          type: boolean
+          description: Whether this is the primary email
+          example: true
+
+    Account:
+      type: object
+      required:
+        - id
+        - type
+        - name
+        - balance
+        - currency_code
+      properties:
+        id:
+          type: string
+          description: Unique account identifier
+          example: acct_9z8y7x6w5v
+        type:
+          type: string
+          enum:
+            - CHECKING
+            - SAVINGS
+            - CREDIT_CARD
+            - LOAN
+            - MORTGAGE
+          description: Account type
+          example: CHECKING
+        name:
+          type: string
+          description: User-friendly account name
+          example: Primary Checking
+        account_number:
+          type: string
+          description: Masked account number (last 4 digits visible)
+          example: "****1234"
+        routing_number:
+          type: string
+          description: Masked routing number (synthetic for privacy)
+          example: "****5678"
+        balance:
+          type: string
+          description: Current account balance (decimal as string)
+          example: "2000.00"
+        available_balance:
+          type: string
+          description: Available balance (current - holds)
+          example: "1957.50"
+        currency_code:
+          type: string
+          description: ISO 4217 currency code
+          example: USD
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - CLOSED
+            - FROZEN
+          description: Account status
+          example: ACTIVE
+        opened_at:
+          type: string
+          format: date
+          description: Account opening date (ISO 8601)
+          example: "2022-03-15"
+
+    AccountDetails:
+      allOf:
+        - $ref: '#/components/schemas/Account'
+        - type: object
+          properties:
+            minimum_balance:
+              type: string
+              description: Minimum balance requirement
+              example: "25.00"
+            interest_rate:
+              type: string
+              description: Annual percentage rate (APR/APY as decimal)
+              example: "0.0450"
+            credit_limit:
+              type: string
+              description: Credit limit (for credit cards)
+              example: "5000.00"
+            available_credit:
+              type: string
+              description: Available credit remaining
+              example: "4500.00"
+            next_payment_due:
+              type: string
+              format: date
+              description: Next payment due date (for loans/credit cards)
+              example: "2024-11-01"
+            minimum_payment_due:
+              type: string
+              description: Minimum payment amount due
+              example: "50.00"
+            statement_balance:
+              type: string
+              description: Most recent statement balance
+              example: "500.00"
+            loan_amount:
+              type: string
+              description: Original loan amount
+              example: "25000.00"
+            payoff_balance:
+              type: string
+              description: Current payoff balance
+              example: "18500.00"
+
+    Transaction:
+      type: object
+      required:
+        - id
+        - account_id
+        - type
+        - status
+        - amount
+        - currency_code
+        - description
+        - transacted_on
+      properties:
+        id:
+          type: string
+          description: Unique transaction identifier
+          example: txn_1a2b3c4d5e6f
+        account_id:
+          type: string
+          description: Account identifier this transaction belongs to
+          example: acct_9z8y7x6w5v
+        type:
+          type: string
+          enum:
+            - DEBIT
+            - CREDIT
+          description: Transaction type (CREDIT increases net worth, DEBIT decreases)
+          example: DEBIT
+        status:
+          type: string
+          enum:
+            - PENDING
+            - POSTED
+          description: Transaction status
+          example: POSTED
+        amount:
+          type: string
+          description: Transaction amount (always unsigned, decimal as string)
+          example: "42.50"
+        currency_code:
+          type: string
+          description: ISO 4217 currency code
+          example: USD
+        description:
+          type: string
+          description: Human-readable transaction description
+          maxLength: 1024
+          example: Coffee Shop Purchase
+        transacted_on:
+          type: string
+          format: date
+          description: Date transaction occurred (ISO 8601 YYYY-MM-DD)
+          example: "2024-10-15"
+        posted_on:
+          type: string
+          format: date
+          nullable: true
+          description: Date transaction posted (null if PENDING)
+          example: "2024-10-16"
+        check_number:
+          type: string
+          nullable: true
+          description: Check number (if applicable)
+          example: "1234"
+        running_balance:
+          type: string
+          nullable: true
+          description: Account balance after transaction (only for POSTED)
+          example: "1957.50"
+        is_international:
+          type: boolean
+          nullable: true
+          description: Whether transaction is international
+          example: false
+        merchant_category:
+          type: string
+          nullable: true
+          description: Merchant category code (MCC)
+          example: "5812"
+
+    TransferRequest:
+      type: object
+      required:
+        - from_account_id
+        - to_account_id
+        - amount
+        - currency_code
+      properties:
+        from_account_id:
+          type: string
+          description: Source account identifier
+          example: acct_9z8y7x6w5v
+        to_account_id:
+          type: string
+          description: Destination account identifier
+          example: acct_8y7x6w5v4u
+        amount:
+          type: string
+          description: Transfer amount (decimal as string)
+          example: "100.00"
+        currency_code:
+          type: string
+          description: ISO 4217 currency code
+          example: USD
+        description:
+          type: string
+          description: Transfer description/memo
+          maxLength: 255
+          example: Savings transfer
+        scheduled_for:
+          type: string
+          format: date
+          nullable: true
+          description: Scheduled transfer date (null for immediate)
+          example: "2024-10-25"
+        frequency:
+          type: string
+          enum:
+            - ONCE
+            - WEEKLY
+            - BIWEEKLY
+            - MONTHLY
+          nullable: true
+          description: Transfer frequency (null or ONCE for one-time)
+          example: ONCE
+
+    Transfer:
+      allOf:
+        - $ref: '#/components/schemas/TransferRequest'
+        - type: object
+          required:
+            - id
+            - status
+            - created_at
+          properties:
+            id:
+              type: string
+              description: Unique transfer identifier
+              example: xfer_1a2b3c4d5e6f
+            status:
+              type: string
+              enum:
+                - PENDING
+                - PROCESSING
+                - COMPLETED
+                - FAILED
+                - CANCELLED
+              description: Transfer status
+              example: PENDING
+            created_at:
+              type: string
+              format: date-time
+              description: Transfer creation timestamp (ISO 8601)
+              example: "2024-10-17T10:30:00Z"
+            completed_at:
+              type: string
+              format: date-time
+              nullable: true
+              description: Transfer completion timestamp
+              example: null
+
+    Pagination:
+      type: object
+      required:
+        - page
+        - page_size
+        - total_pages
+        - total_count
+      properties:
+        page:
+          type: integer
+          description: Current page number (1-indexed)
+          example: 1
+        page_size:
+          type: integer
+          description: Number of items per page
+          example: 50
+        total_pages:
+          type: integer
+          description: Total number of pages
+          example: 12
+        total_count:
+          type: integer
+          description: Total number of items across all pages
+          example: 573
+        next_page_token:
+          type: string
+          nullable: true
+          description: Opaque token for fetching next page (null if last page)
+          example: eyJvZmZzZXQiOjUwLCJsaW1pdCI6NTB9
+        previous_page_token:
+          type: string
+          nullable: true
+          description: Opaque token for fetching previous page (null if first page)
+          example: null
+
+    Problem:
+      type: object
+      description: RFC 7807 Problem Details for HTTP APIs
+      required:
+        - type
+        - title
+        - status
+      properties:
+        type:
+          type: string
+          format: uri
+          description: URI reference identifying the problem type
+          example: https://api.cu.app/errors/validation-error
+        title:
+          type: string
+          description: Short, human-readable summary of the problem
+          example: Validation Error
+        status:
+          type: integer
+          description: HTTP status code
+          example: 400
+        detail:
+          type: string
+          description: Human-readable explanation specific to this occurrence
+          example: The 'amount' field must be a positive decimal value
+        instance:
+          type: string
+          format: uri
+          description: URI reference identifying this specific occurrence
+          example: https://api.cu.app/v1/consumers/cons_1a2b3c4d5e6f7g8h/transfers
+        trace_id:
+          type: string
+          description: Internal trace ID for debugging
+          example: 7f8a9b0c-1d2e-3f4a-5b6c-7d8e9f0a1b2c
+
+  responses:
+    BadRequest:
+      description: Bad Request - Invalid input parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://api.cu.app/errors/bad-request
+            title: Bad Request
+            status: 400
+            detail: Invalid date format. Expected ISO 8601 (YYYY-MM-DD).
+            instance: https://api.cu.app/v1/consumers/cons_1a2b3c4d5e6f7g8h/accounts/acct_9z8y7x6w5v/transactions
+            trace_id: 7f8a9b0c-1d2e-3f4a-5b6c-7d8e9f0a1b2c
+
+    Unauthorized:
+      description: Unauthorized - Missing or invalid authentication
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://api.cu.app/errors/unauthorized
+            title: Unauthorized
+            status: 401
+            detail: Invalid or expired access token
+            instance: https://api.cu.app/v1/consumers/cons_1a2b3c4d5e6f7g8h/profile
+            trace_id: 8e9f0a1b-2c3d-4e5f-6a7b-8c9d0e1f2a3b
+
+    Forbidden:
+      description: Forbidden - Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://api.cu.app/errors/forbidden
+            title: Forbidden
+            status: 403
+            detail: Insufficient scope. Required scope 'transactions.read' not granted.
+            instance: https://api.cu.app/v1/consumers/cons_1a2b3c4d5e6f7g8h/accounts/acct_9z8y7x6w5v/transactions
+            trace_id: 9f0a1b2c-3d4e-5f6a-7b8c-9d0e1f2a3b4c
+
+    NotFound:
+      description: Not Found - Resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://api.cu.app/errors/not-found
+            title: Not Found
+            status: 404
+            detail: Account with ID 'acct_9z8y7x6w5v' not found
+            instance: https://api.cu.app/v1/consumers/cons_1a2b3c4d5e6f7g8h/accounts/acct_9z8y7x6w5v
+            trace_id: 0a1b2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d
+
+    RateLimitExceeded:
+      description: Too Many Requests - Rate limit exceeded
+      headers:
+        X-RateLimit-Limit:
+          description: Request limit per window
+          schema:
+            type: integer
+            example: 1000
+        X-RateLimit-Remaining:
+          description: Remaining requests in current window
+          schema:
+            type: integer
+            example: 0
+        X-RateLimit-Reset:
+          description: Time when rate limit resets (Unix timestamp)
+          schema:
+            type: integer
+            example: 1697654400
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://api.cu.app/errors/rate-limit-exceeded
+            title: Rate Limit Exceeded
+            status: 429
+            detail: API rate limit exceeded. Limit resets in 300 seconds.
+            instance: https://api.cu.app/v1/consumers/cons_1a2b3c4d5e6f7g8h/accounts
+            trace_id: 1b2c3d4e-5f6a-7b8c-9d0e-1f2a3b4c5d6e
+
+    InternalServerError:
+      description: Internal Server Error - Unexpected server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://api.cu.app/errors/internal-server-error
+            title: Internal Server Error
+            status: 500
+            detail: An unexpected error occurred. Our team has been notified.
+            instance: https://api.cu.app/v1/consumers/cons_1a2b3c4d5e6f7g8h/transfers
+            trace_id: 2c3d4e5f-6a7b-8c9d-0e1f-2a3b4c5d6e7f
+
+

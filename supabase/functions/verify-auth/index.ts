@@ -37,11 +37,11 @@ serve(async (req) => {
 
     const { email, password, action, id_document, cu_id }: VerifyAuthRequest = await req.json()
 
-    // SIGNUP: Create account + verify ID
+    // SIGNUP: Create account (ID verification handled separately by verify-id)
     if (action === 'signup') {
-      if (!password || !id_document) {
+      if (!password) {
         return new Response(
-          JSON.stringify({ error: 'Password and ID document required for signup' }),
+          JSON.stringify({ error: 'Password required for signup' }),
           { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         )
       }
@@ -64,18 +64,7 @@ serve(async (req) => {
         )
       }
 
-      // 2. Verify ID document (mock - in production use real ID verification service)
-      const idVerified = await verifyIDDocument(id_document)
-
-      // 3. Update user metadata
-      await supabaseClient.auth.admin.updateUserById(authData.user.id, {
-        user_metadata: {
-          id_verified: idVerified,
-          id_verification_date: new Date().toISOString()
-        }
-      })
-
-      // 4. Create user record in cu_themes or users table
+      // 2. Create user record in cu_themes or users table
       if (cu_id) {
         await supabaseClient.from('cu_themes').insert({
           cu_id: cu_id,
@@ -89,8 +78,8 @@ serve(async (req) => {
         JSON.stringify({
           success: true,
           user: authData.user,
-          id_verified: idVerified,
-          message: idVerified ? 'Account created and ID verified' : 'Account created. ID verification pending.'
+          id_verified: false,
+          message: 'Account created. ID verification will be processed separately.'
         }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )

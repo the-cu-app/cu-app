@@ -56,6 +56,7 @@ export default async function AdapterPage({ params }: { params: Promise<{ slug: 
       <TechnicalSpecs specs={adapter.specs} />
 
       <AdapterPricing
+        adapterId={adapter.id}
         adapterName={adapter.name}
         priceOnetime={adapter.price_onetime}
         priceMonthly={adapter.price_monthly}
@@ -72,7 +73,7 @@ export default async function AdapterPage({ params }: { params: Promise<{ slug: 
             </p>
             <div className="flex gap-6 justify-center">
               <Link
-                href="/checkout"
+                href={`/checkout?adapter=${adapter.id}`}
                 className="bg-black dark:bg-white text-white dark:text-black px-12 py-5 rounded-full font-bold text-xl hover:bg-black/90 dark:hover:bg-white/90 transition-colors"
               >
                 Purchase Now

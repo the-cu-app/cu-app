@@ -1,0 +1,20 @@
+0 verbose cli /usr/local/bin/node /Users/kylekusche/.npm-global/bin/npm
+1 info using npm@11.6.2
+2 info using node@v22.18.0
+3 silly config load:file:/Users/kylekusche/.npm-global/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/kylekusche/Development/github/cu-app/.npmrc
+5 silly config load:file:/Users/kylekusche/.npmrc
+6 silly config load:file:/Users/kylekusche/.npm-global/etc/npmrc
+7 verbose title npm view @anthropic-ai/claude-code@latest version
+8 verbose argv "view" "@anthropic-ai/claude-code@latest" "version" "--prefer-online"
+9 verbose logfile logs-max:10 dir:/Users/kylekusche/Development/github/cu-app/.npm-cache/_logs/2025-11-08T04_10_01_822Z-
+10 verbose logfile /Users/kylekusche/Development/github/cu-app/.npm-cache/_logs/2025-11-08T04_10_01_822Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 http fetch GET 200 https://registry.npmjs.org/@anthropic-ai%2fclaude-code 187ms (cache revalidated)
+14 verbose cwd /Users/kylekusche/Development/github/cu-app
+15 verbose os Darwin 25.0.0
+16 verbose node v22.18.0
+17 verbose npm  v11.6.2
+18 verbose exit 0
+19 info ok

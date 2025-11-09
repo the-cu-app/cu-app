@@ -1,6 +1,6 @@
 {
-  "name": "cu-adapters",
-  "version": "0.1.0",
+  "name": "cu-os",
+  "version": "0.0.01",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,7 +13,8 @@
     "@supabase/supabase-js": "^2.78.0",
     "next": "15.0.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "stripe": "^17.4.0"
   },
   "devDependencies": {
     "@types/node": "^20",

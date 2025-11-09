@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 
 interface AdapterPricingProps {
+  adapterId?: string;
   adapterName: string;
   priceOnetime: number;
   priceMonthly: number;
@@ -11,6 +12,7 @@ interface AdapterPricingProps {
 }
 
 export default function AdapterPricing({
+  adapterId,
   adapterName,
   priceOnetime,
   priceMonthly,
@@ -100,7 +102,7 @@ export default function AdapterPricing({
             </div>
 
             <div className="flex flex-col gap-4">
-              <Link href="/checkout" className="text-center bg-white text-black px-12 py-5 rounded-full font-bold text-xl hover:bg-white/90 transition-colors">
+              <Link href={`/checkout?adapter=${adapterId || 'suite'}`} className="text-center bg-white text-black px-12 py-5 rounded-full font-bold text-xl hover:bg-white/90 transition-colors">
                 Purchase Adapter - ${(priceOnetime / 1000).toFixed(0)}K
               </Link>
               <button className="border-2 border-white/20 px-12 py-5 rounded-full font-bold text-xl hover:border-white/40 hover:bg-white/5 transition-all duration-300">
@@ -156,7 +158,7 @@ export default function AdapterPricing({
             </div>
 
             <div className="flex flex-col gap-4">
-              <Link href="/checkout" className="text-center bg-white text-black px-12 py-5 rounded-full font-bold text-xl hover:bg-white/90 transition-colors">
+              <Link href="/checkout?adapter=suite" className="text-center bg-white text-black px-12 py-5 rounded-full font-bold text-xl hover:bg-white/90 transition-colors">
                 Get Complete Suite - $50K
               </Link>
               <Link href="/" className="text-center border-2 border-white/40 px-12 py-5 rounded-full font-bold text-xl hover:border-white hover:bg-white/5 transition-all duration-300">

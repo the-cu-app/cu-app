@@ -12,9 +12,9 @@ export function createSupabaseClient() {
 }
 
 // Auth helpers
-export async function signUp(email: string, password: string, id_document?: string) {
-  // Call edge function for ID verification
-  const response = await fetch(`${supabaseUrl}/functions/v1/verify-auth`, {
+export async function signUp(email: string, password: string, id_document_front: string, id_document_back: string) {
+  // First, create the user account via verify-auth (without ID document)
+  const authResponse = await fetch(`${supabaseUrl}/functions/v1/verify-auth`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -24,12 +24,43 @@ export async function signUp(email: string, password: string, id_document?: stri
       email,
       password,
       action: 'signup',
-      id_document,
-      cu_id: email.split('@')[0]
+      cu_id: email.split('@')[0],
+      // Don't send id_document here - we'll use verify-id separately
     })
   })
 
-  return await response.json()
+  const authData = await authResponse.json()
+
+  if (!authData.success || authData.error) {
+    return authData
+  }
+
+  // Then, verify the ID using the verify-id edge function with front and back
+  const verifyResponse = await fetch(`${supabaseUrl}/functions/v1/verify-id`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${supabaseAnonKey}`
+    },
+    body: JSON.stringify({
+      id_document_front,
+      id_document_back,
+      user_id: authData.user?.id
+    })
+  })
+
+  const verifyData = await verifyResponse.json()
+
+  // Return combined result
+  return {
+    success: authData.success,
+    user: authData.user,
+    id_verified: verifyData.verified || verifyData.success || false,
+    verification_result: verifyData,
+    message: verifyData.verified || verifyData.success 
+      ? 'Account created and ID verified' 
+      : 'Account created. ID verification pending.'
+  }
 }
 
 export async function signIn(email: string, password: string) {

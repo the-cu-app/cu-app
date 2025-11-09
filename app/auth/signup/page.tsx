@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
@@ -11,21 +11,76 @@ export default function SignupPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [idDocument, setIdDocument] = useState<string | null>(null);
+  const [idDocumentFront, setIdDocumentFront] = useState<string | null>(null);
+  const [idDocumentBack, setIdDocumentBack] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [step, setStep] = useState(1); // 1: Account, 2: ID Verification
+  const [captureMode, setCaptureMode] = useState<'front' | 'back' | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+  const fileInputRefFront = useRef<HTMLInputElement>(null);
+  const fileInputRefBack = useRef<HTMLInputElement>(null);
 
-  const handleIDUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleIDUpload = (side: 'front' | 'back', e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     // Convert to base64
     const reader = new FileReader();
     reader.onloadend = () => {
-      setIdDocument(reader.result as string);
+      if (side === 'front') {
+        setIdDocumentFront(reader.result as string);
+      } else {
+        setIdDocumentBack(reader.result as string);
+      }
     };
     reader.readAsDataURL(file);
+  };
+
+  const startCamera = async (side: 'front' | 'back') => {
+    try {
+      setCaptureMode(side);
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        video: { facingMode: 'environment' } // Use back camera on mobile
+      });
+      streamRef.current = stream;
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+    } catch (err) {
+      setError('Could not access camera. Please use file upload instead.');
+      setCaptureMode(null);
+    }
+  };
+
+  const stopCamera = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current = null;
+    }
+    setCaptureMode(null);
+  };
+
+  const capturePhoto = (side: 'front' | 'back') => {
+    if (!videoRef.current) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = videoRef.current.videoWidth;
+    canvas.height = videoRef.current.videoHeight;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.drawImage(videoRef.current, 0, 0);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+      
+      if (side === 'front') {
+        setIdDocumentFront(dataUrl);
+      } else {
+        setIdDocumentBack(dataUrl);
+      }
+      
+      stopCamera();
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -50,15 +105,21 @@ export default function SignupPage() {
     }
 
     if (step === 2) {
-      if (!idDocument) {
-        setError('Please upload a valid ID document');
+      if (!idDocumentFront) {
+        setError('Please upload or capture the front of your ID document');
+        return;
+      }
+
+      if (!idDocumentBack) {
+        setError('Please upload or capture the back of your ID document');
         return;
       }
 
       setLoading(true);
 
       try {
-        const result = await signUp(email, password, idDocument);
+        // Use the verify-id edge function for ID verification
+        const result = await signUp(email, password, idDocumentFront, idDocumentBack);
 
         if (result.error) {
           setError(result.error);
@@ -166,59 +227,163 @@ export default function SignupPage() {
 
             {step === 2 && (
               <>
-                <div className="border-2 border-dashed border-white/20 rounded-lg p-8 text-center hover:border-white/40 transition-colors">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleIDUpload}
-                    className="hidden"
-                    id="id-upload"
-                  />
-                  <label htmlFor="id-upload" className="cursor-pointer">
-                    {idDocument ? (
-                      <div className="space-y-4">
-                        <svg
-                          className="w-16 h-16 mx-auto text-green-500"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                {/* Camera Video Preview */}
+                {captureMode && (
+                  <div className="fixed inset-0 bg-black z-50 flex flex-col items-center justify-center p-6">
+                    <div className="w-full max-w-md">
+                      <video
+                        ref={videoRef}
+                        autoPlay
+                        playsInline
+                        className="w-full rounded-lg mb-4"
+                        style={{ transform: 'scaleX(-1)' }}
+                      />
+                      <div className="flex gap-4">
+                        <button
+                          type="button"
+                          onClick={stopCamera}
+                          className="flex-1 border border-white/20 py-3 rounded-full font-bold hover:bg-white/5 transition-colors"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        <div>
-                          <p className="font-medium">ID Document Uploaded</p>
-                          <p className="text-sm text-white/60 mt-1">Click to change</p>
+                          Cancel
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => capturePhoto(captureMode)}
+                          className="flex-1 bg-white text-black py-3 rounded-full font-bold hover:bg-white/90 transition-colors"
+                        >
+                          Capture Photo
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Front of ID */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-bold">Front of ID</h3>
+                  <div className="border-2 border-dashed border-white/20 rounded-lg p-6 hover:border-white/40 transition-colors">
+                    {idDocumentFront ? (
+                      <div className="space-y-4">
+                        <img
+                          src={idDocumentFront}
+                          alt="Front of ID"
+                          className="w-full h-48 object-contain rounded-lg bg-white/5"
+                        />
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIdDocumentFront(null);
+                              fileInputRefFront.current?.click();
+                            }}
+                            className="flex-1 border border-white/20 py-2 rounded-lg font-medium hover:bg-white/5 transition-colors text-sm"
+                          >
+                            Change Photo
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => startCamera('front')}
+                            className="flex-1 border border-white/20 py-2 rounded-lg font-medium hover:bg-white/5 transition-colors text-sm"
+                          >
+                            Take Photo
+                          </button>
                         </div>
                       </div>
                     ) : (
-                      <div className="space-y-4">
-                        <svg
-                          className="w-16 h-16 mx-auto text-white/40"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                          />
-                        </svg>
-                        <div>
-                          <p className="font-medium">Upload Government ID</p>
-                          <p className="text-sm text-white/60 mt-1">
-                            Driver's license, passport, or state ID
-                          </p>
+                      <div className="text-center space-y-4">
+                        <div className="flex gap-2 justify-center">
+                          <button
+                            type="button"
+                            onClick={() => fileInputRefFront.current?.click()}
+                            className="px-6 py-3 border border-white/20 rounded-lg font-medium hover:bg-white/5 transition-colors"
+                          >
+                            Upload Photo
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => startCamera('front')}
+                            className="px-6 py-3 border border-white/20 rounded-lg font-medium hover:bg-white/5 transition-colors"
+                          >
+                            Take Photo
+                          </button>
                         </div>
+                        <p className="text-sm text-white/60">
+                          Driver's license, passport, or state ID
+                        </p>
                       </div>
                     )}
-                  </label>
+                    <input
+                      ref={fileInputRefFront}
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleIDUpload('front', e)}
+                      className="hidden"
+                    />
+                  </div>
+                </div>
+
+                {/* Back of ID */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-bold">Back of ID</h3>
+                  <div className="border-2 border-dashed border-white/20 rounded-lg p-6 hover:border-white/40 transition-colors">
+                    {idDocumentBack ? (
+                      <div className="space-y-4">
+                        <img
+                          src={idDocumentBack}
+                          alt="Back of ID"
+                          className="w-full h-48 object-contain rounded-lg bg-white/5"
+                        />
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIdDocumentBack(null);
+                              fileInputRefBack.current?.click();
+                            }}
+                            className="flex-1 border border-white/20 py-2 rounded-lg font-medium hover:bg-white/5 transition-colors text-sm"
+                          >
+                            Change Photo
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => startCamera('back')}
+                            className="flex-1 border border-white/20 py-2 rounded-lg font-medium hover:bg-white/5 transition-colors text-sm"
+                          >
+                            Take Photo
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="text-center space-y-4">
+                        <div className="flex gap-2 justify-center">
+                          <button
+                            type="button"
+                            onClick={() => fileInputRefBack.current?.click()}
+                            className="px-6 py-3 border border-white/20 rounded-lg font-medium hover:bg-white/5 transition-colors"
+                          >
+                            Upload Photo
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => startCamera('back')}
+                            className="px-6 py-3 border border-white/20 rounded-lg font-medium hover:bg-white/5 transition-colors"
+                          >
+                            Take Photo
+                          </button>
+                        </div>
+                        <p className="text-sm text-white/60">
+                          Driver's license, passport, or state ID
+                        </p>
+                      </div>
+                    )}
+                    <input
+                      ref={fileInputRefBack}
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleIDUpload('back', e)}
+                      className="hidden"
+                    />
+                  </div>
                 </div>
 
                 <div className="bg-white/5 border border-white/10 rounded-lg p-4 text-sm text-white/60">
@@ -234,14 +399,17 @@ export default function SignupPage() {
                 <div className="flex gap-4">
                   <button
                     type="button"
-                    onClick={() => setStep(1)}
+                    onClick={() => {
+                      stopCamera();
+                      setStep(1);
+                    }}
                     className="flex-1 border border-white/20 py-4 rounded-full font-bold hover:bg-white/5 transition-colors"
                   >
                     ← Back
                   </button>
                   <button
                     type="submit"
-                    disabled={loading || !idDocument}
+                    disabled={loading || !idDocumentFront || !idDocumentBack}
                     className="flex-1 bg-white text-black py-4 rounded-full font-bold hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? 'Creating Account...' : 'Create Account'}
