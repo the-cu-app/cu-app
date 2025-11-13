@@ -34,25 +34,31 @@ body {
 
 .animate-fadeInUp {
   animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: var(--reveal-delay, 0s);
 }
 
 .animate-fadeIn {
   animation: fadeIn 0.8s ease-out forwards;
+  animation-delay: var(--reveal-delay, 0s);
 }
 
-.delay-100 { animation-delay: 0.1s; opacity: 0; }
-.delay-200 { animation-delay: 0.2s; opacity: 0; }
-.delay-300 { animation-delay: 0.3s; opacity: 0; }
-.delay-400 { animation-delay: 0.4s; opacity: 0; }
+.delay-100 { --reveal-delay: 0.1s; }
+.delay-200 { --reveal-delay: 0.2s; }
+.delay-300 { --reveal-delay: 0.3s; }
+.delay-400 { --reveal-delay: 0.4s; }
 
 /* Scroll reveal */
 .scroll-reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.6s ease-out;
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: var(--reveal-delay, 0s);
 }
 
-.scroll-reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
 }
