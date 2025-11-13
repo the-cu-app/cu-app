@@ -1,6 +1,4 @@
-'use client';
-
-import { useEffect } from 'react';
+import type { CSSProperties } from 'react';
 import type { AdapterSpecs } from '@/lib/adapters-data';
 
 interface TechnicalSpecsProps {
@@ -8,27 +6,6 @@ interface TechnicalSpecsProps {
 }
 
 export default function TechnicalSpecs({ specs }: TechnicalSpecsProps) {
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.scroll-reveal').forEach(el => {
-      observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section className="border-b border-white/10 bg-white/5">
       <div className="max-w-7xl mx-auto px-6 py-24">
@@ -38,7 +15,7 @@ export default function TechnicalSpecs({ specs }: TechnicalSpecsProps) {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
-          <div className="scroll-reveal">
+          <div className="scroll-reveal" style={{ '--reveal-delay': '0.05s' } as CSSProperties}>
             <h3 className="text-2xl font-bold mb-6">Database Schema</h3>
             <ul className="space-y-3">
               <li className="flex justify-between border-b border-white/10 pb-3">
@@ -64,7 +41,7 @@ export default function TechnicalSpecs({ specs }: TechnicalSpecsProps) {
             </ul>
           </div>
 
-          <div className="scroll-reveal">
+          <div className="scroll-reveal" style={{ '--reveal-delay': '0.1s' } as CSSProperties}>
             <h3 className="text-2xl font-bold mb-6">API Endpoints</h3>
             <ul className="space-y-3">
               <li className="flex justify-between border-b border-white/10 pb-3">
@@ -90,7 +67,7 @@ export default function TechnicalSpecs({ specs }: TechnicalSpecsProps) {
             </ul>
           </div>
 
-          <div className="scroll-reveal">
+          <div className="scroll-reveal" style={{ '--reveal-delay': '0.15s' } as CSSProperties}>
             <h3 className="text-2xl font-bold mb-6">Performance</h3>
             <ul className="space-y-3">
               <li className="flex justify-between border-b border-white/10 pb-3">
@@ -116,7 +93,7 @@ export default function TechnicalSpecs({ specs }: TechnicalSpecsProps) {
             </ul>
           </div>
 
-          <div className="scroll-reveal">
+          <div className="scroll-reveal" style={{ '--reveal-delay': '0.2s' } as CSSProperties}>
             <h3 className="text-2xl font-bold mb-6">What&apos;s Included</h3>
             <ul className="space-y-3">
               <li className="flex gap-3">

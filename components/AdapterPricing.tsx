@@ -1,6 +1,4 @@
-'use client';
-
-import { useEffect } from 'react';
+import type { CSSProperties } from 'react';
 import Link from 'next/link';
 
 interface AdapterPricingProps {
@@ -18,27 +16,6 @@ export default function AdapterPricing({
   priceMonthly,
   deployDays
 }: AdapterPricingProps) {
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.scroll-reveal').forEach(el => {
-      observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section className="border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-24">
@@ -49,7 +26,10 @@ export default function AdapterPricing({
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Individual Adapter */}
-          <div className="scroll-reveal bg-white/5 border-2 border-white/20 rounded-2xl p-12 hover:scale-105 transition-transform duration-300">
+          <div
+            className="scroll-reveal bg-white/5 border-2 border-white/20 rounded-2xl p-12 hover:scale-105 transition-transform duration-300"
+            style={{ '--reveal-delay': '0.05s' } as CSSProperties}
+          >
             <div className="text-center mb-8">
               <div className="text-sm font-bold text-white/60 mb-4">INDIVIDUAL ADAPTER</div>
               <h3 className="text-2xl font-bold mb-6">{adapterName}</h3>
@@ -112,7 +92,10 @@ export default function AdapterPricing({
           </div>
 
           {/* Complete Suite */}
-          <div className="scroll-reveal border-2 border-white rounded p-12 hover:border-white/80 transition-colors">
+          <div
+            className="scroll-reveal border-2 border-white rounded p-12 hover:border-white/80 transition-colors"
+            style={{ '--reveal-delay': '0.1s' } as CSSProperties}
+          >
             <div className="text-center mb-8">
               <div className="text-sm font-bold text-white/60 mb-4">COMPLETE SUITE</div>
               <h3 className="text-2xl font-bold mb-6">All 10 Adapters</h3>

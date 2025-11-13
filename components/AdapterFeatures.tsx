@@ -1,6 +1,4 @@
-'use client';
-
-import { useEffect } from 'react';
+import type { CSSProperties } from 'react';
 import type { AdapterFeature } from '@/lib/adapters-data';
 
 interface AdapterFeaturesProps {
@@ -8,27 +6,6 @@ interface AdapterFeaturesProps {
 }
 
 export default function AdapterFeatures({ features }: AdapterFeaturesProps) {
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.scroll-reveal').forEach(el => {
-      observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section className="border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-24">
@@ -42,6 +19,7 @@ export default function AdapterFeatures({ features }: AdapterFeaturesProps) {
             <div
               key={index}
               className="scroll-reveal border border-white/10 rounded p-8 hover:border-white/30 transition-colors"
+              style={{ '--reveal-delay': `${index * 0.05}s` } as CSSProperties}
             >
               <div className="w-12 h-12 border border-white/10 rounded flex items-center justify-center mb-6">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
